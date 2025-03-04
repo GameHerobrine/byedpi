@@ -407,7 +407,8 @@ int create_conn(struct poolhd *pool,
 int udp_associate(struct poolhd *pool, 
         struct eval *val, struct sockaddr_ina *dst)
 {
-    struct sockaddr_ina addr = *dst;
+	if(!dst) return -1;
+	struct sockaddr_ina addr = *dst;
     
     int ufd = nb_socket(params.baddr.sin6_family, SOCK_DGRAM);
     if (ufd < 0) {
