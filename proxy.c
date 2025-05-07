@@ -471,6 +471,11 @@ int udp_associate(struct poolhd *pool,
         return -1;
     }
     struct eval *client = add_event(pool, EV_UDP_TUNNEL, cfd, POLLIN);
+    if(!client){ //evil
+        del_event(pool, pair);
+        close(cfd);
+        return -1;
+    }
     if (!pair) {
         del_event(pool, pair);
         close(cfd);
