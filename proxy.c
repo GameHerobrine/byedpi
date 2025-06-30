@@ -470,6 +470,7 @@ int create_conn(struct poolhd *pool,
 static int udp_associate(struct poolhd *pool, 
         struct eval *val, const union sockaddr_u *dst)
 {
+    if(!dst) return -1;
     union sockaddr_u addr = *dst;
     
     int ufd = remote_sock(&addr, SOCK_DGRAM);
